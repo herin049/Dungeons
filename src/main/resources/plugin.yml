@@ -1,0 +1,4 @@
+name: Dungeons
+version: ${project.version}
+main: com.pluginsx.dungeons.Dungeons
+api-version: 1.13
