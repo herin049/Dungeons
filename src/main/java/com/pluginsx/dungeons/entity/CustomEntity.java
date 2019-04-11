@@ -2,22 +2,21 @@ package com.pluginsx.dungeons.entity;
 
 import org.bukkit.Bukkit;
 
-public class CustomEntity
+public  abstract class CustomEntity
 
 {
-    private String name = "Null";
-    private String file = "Null.txt";
 
-    public CustomEntity(double x, double y, double z)
+    public CustomEntity()
     {
-        Bukkit.getConsoleSender().sendMessage("Summoning entity: " + name +
-        " using data from: " + file);
+        Bukkit.getConsoleSender().sendMessage("Summoning entity: " + this.getName() +
+        " using data from: " + this.getFile());
     }
 
-    void update()
-    {
+    public abstract void update();
 
-    }
+    public abstract String getName();
+
+    public abstract String getFile();
 
 
 
