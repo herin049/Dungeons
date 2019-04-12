@@ -13,15 +13,17 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.EulerAngle;
 
 import java.util.Iterator;
+import java.util.LinkedList;
 
 public final class Dungeons extends JavaPlugin
 {
-
+    public LinkedList<CustomEntity> entities;
 
 
     @Override
     public void onEnable()
     {
+        entities = new LinkedList<>();
         //Initializing command manager
         this.getCommand("dungeons").setExecutor(new CommandManager(this));
         //Test
@@ -32,6 +34,7 @@ public final class Dungeons extends JavaPlugin
                 Dungeons.this.onTick();
             }
         }, 0L, 1L);
+
     }
 
     @Override
@@ -40,37 +43,22 @@ public final class Dungeons extends JavaPlugin
         // Plugin shutdown logic
     }
 
-    public void onTick()
+    private void onTick()
     {
-        Parrot parrot = null;
-        ArmorStand head = null;
-
-        for(World w: getServer().getWorlds())
+        for(int i = 0; i < entities.size(); i++)
         {
-            for(Entity e: w.getEntities())
-            {
-
-                if(e.getCustomName() != null && e.getCustomName().equals("taylorsasser1234"))
+            CustomEntity e = entities.get(i);
+            if(e != null) {
+                if (e.isDead())
                 {
-                    parrot = (Parrot) e;
+                    e.kill();
+                    entities.remove(i);
                 }
-
-                if(e.getCustomName() != null && e.getCustomName().equals("taylorsasser1235"))
+                else
                 {
-                    head = (ArmorStand) e;
+                    e.update();
                 }
             }
-        }
-
-        if(parrot != null && head != null)
-        {
-            Location b = parrot.getLocation().clone();
-            b.add(0.0, -1.4, 0.0);
-            head.teleport(b);
-            parrot.setTarget(Bukkit.getPlayer("BigL"));
-
-            //head.setHeadPose(new EulerAngle(0 , parrot.getLocation().getYaw() + 90.0, 0));
-
         }
     }
 

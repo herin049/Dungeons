@@ -1,5 +1,6 @@
 package com.pluginsx.dungeons.commands;
 
+import com.pluginsx.dungeons.Dungeons;
 import org.bukkit.command.CommandSender;
 
 public class CommandInfo extends Command
@@ -10,7 +11,7 @@ public class CommandInfo extends Command
     {
         return "info";
     }
-    public void execute(CommandSender sender, String[] args)
+    public void execute(CommandSender sender, String[] args, Dungeons instance)
     {
         sender.sendMessage("Taylorsasser 1234");
     }

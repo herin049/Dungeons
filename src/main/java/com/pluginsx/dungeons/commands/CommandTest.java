@@ -1,5 +1,8 @@
 package com.pluginsx.dungeons.commands;
 
+import com.pluginsx.dungeons.Dungeons;
+import com.pluginsx.dungeons.entity.mobs.BeeMob;
+import com.pluginsx.dungeons.entity.mobs.TestMob;
 import com.pluginsx.dungeons.skulls.SkullCreator;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -20,21 +23,13 @@ public class CommandTest extends Command
     {
         return "test";
     }
-    public void execute(CommandSender sender, String[] args)
+    public void execute(CommandSender sender, String[] args, Dungeons instance)
     {
-        Player player = (Player) sender;
-        Location loc = player.getLocation().clone();
+        Player p = (Player) sender;
+        //instance.entities.add(new BeeMob(p.getLocation()));
 
-        Parrot parrot = (Parrot)loc.getWorld().spawn(loc, Parrot.class);
-        parrot.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1));
-        parrot.setCustomName("taylorsasser1234");
+        instance.entities.add(new TestMob(p.getLocation()));
 
-        ArmorStand stand = (ArmorStand)loc.getWorld().spawn(loc, ArmorStand.class);
-        stand.setGravity(false);
-        stand.setHelmet(SkullCreator.itemFromBase64("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTQ3MzIyZjgzMWUzYzE2OGNmYmQzZTI4ZmU5MjUxNDRiMjYxZTc5ZWIzOWM3NzEzNDlmYWM1NWE4MTI2NDczIn19fQ=="));
-        stand.setVisible(false);
-        //stand.getEquipment().setItemInMainHand(new ItemStack(Material.FEATHER, 1));
-        stand.setCustomName("taylorsasser1235");
 
     }
 }

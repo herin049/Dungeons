@@ -6,11 +6,7 @@ public  abstract class CustomEntity
 
 {
 
-    public CustomEntity()
-    {
-        Bukkit.getConsoleSender().sendMessage("Summoning entity: " + this.getName() +
-        " using data from: " + this.getFile());
-    }
+    public CustomEntity() { }
 
     public abstract void update();
 
@@ -18,6 +14,9 @@ public  abstract class CustomEntity
 
     public abstract String getFile();
 
+    public abstract boolean isDead();
+
+    public abstract void kill();
 
 
 }

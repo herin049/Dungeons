@@ -31,7 +31,7 @@ public class CommandManager implements CommandExecutor
         {
             if(commands.get(i).getName().equals(args[0]))
             {
-                commands.get(i).execute(sender, args);
+                commands.get(i).execute(sender, args, this.plugin_instance);
                 return true;
             }
         }
