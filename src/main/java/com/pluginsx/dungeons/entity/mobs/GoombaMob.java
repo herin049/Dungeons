@@ -1,29 +1,19 @@
 package com.pluginsx.dungeons.entity.mobs;
 
-
+import com.pluginsx.dungeons.entity.CustomEntity;
 import com.pluginsx.dungeons.skulls.SkullCreator;
 import org.bukkit.Location;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-
-import org.bukkit.entity.*;
-import org.bukkit.loot.LootTable;
-import org.bukkit.loot.LootTables;
-import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.Location;
-import org.bukkit.World;
-import org.bukkit.entity.Entity;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Slime;
+import org.bukkit.entity.Zombie;
+import org.bukkit.entity.ZombieVillager;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.loot.LootTables;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.util.EulerAngle;
-
-import com.pluginsx.dungeons.entity.CustomEntity;
-import org.bukkit.Bukkit;
 import org.bukkit.util.Vector;
 
-public class TestMob extends CustomEntity
+public class GoombaMob extends CustomEntity
 {
 
     private ArmorStand stand;
@@ -32,7 +22,7 @@ public class TestMob extends CustomEntity
 
     private ItemStack head;
 
-    public TestMob(Location loc)
+    public GoombaMob(Location loc)
     {
         head = SkullCreator.itemFromBase64("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYWVjZjk0ZjRiY2JiZjZlYWRjYjI1YWEzZDA2OWFhNjc4ZWJkYjUyNDFlYjgyZThlMjY4ODljYWYzMjc1NTcwIn19fQ==");
 

@@ -7,9 +7,11 @@ import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Bat;
 import org.bukkit.entity.Parrot;
+import org.bukkit.entity.Slime;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.util.Vector;
 
 
 public class BeeMob extends CustomEntity
@@ -26,6 +28,7 @@ public class BeeMob extends CustomEntity
         base = (Bat) loc.getWorld().spawn(loc, Bat.class);
         base.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1));
         base.setSilent(true);
+
 
         stand = (ArmorStand)loc.getWorld().spawn(loc, ArmorStand.class);
         stand.setGravity(false);
@@ -59,6 +62,16 @@ public class BeeMob extends CustomEntity
     public void kill()
     {
         stand.remove();
+    }
+
+    public boolean hasSlime(Slime slime)
+    {
+        return false;
+    }
+
+    public void applyVelocity(Vector vel)
+    {
+
     }
 
 }
