@@ -3,7 +3,7 @@ package com.pluginsx.dungeons.math;
 public class Rotations
 {
 
-    public static void rotate(double a, double b, double x, double y, Double c, Double d, double theta)
+    public static double[] rotate(double a, double b, double x, double y, double theta)
     {
         //Rotates the point (x, y) around (a, b) by theta radians.
         double e = x - a;
@@ -12,19 +12,27 @@ public class Rotations
         double costheta = Math.cos(theta);
         double sintheta = Math.sin(theta);
 
-        c = (e * costheta - f * sintheta) + x;
-        d = (e * sintheta + f * costheta) + y;
+        double vals[] = new double[2];
+
+        vals[0] = (e * costheta - f * sintheta) + x;
+        vals[1] = (e * sintheta + f * costheta) + y;
+
+        return vals;
     }
 
-    public static void rotate(double x, double y, Double c, Double d, double theta)
+    public static double[] rotate(double x, double y, double theta)
     {
         //Rotates the point (x, y) around the origin by theta radians.
 
         double costheta = Math.cos(theta);
         double sintheta = Math.sin(theta);
 
-        c = (x * costheta - y * sintheta);
-        d = (x * sintheta + y * costheta);
+        double vals[] = new double[2];
+
+        vals[0] = (x * costheta - y * sintheta);
+        vals[1] = (x * sintheta + y * costheta);
+
+        return vals;
     }
 
 

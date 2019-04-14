@@ -74,4 +74,9 @@ public class BeeMob extends CustomEntity
 
     }
 
+    public void damage(double dmg)
+    {
+
+    }
+
 }

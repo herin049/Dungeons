@@ -85,7 +85,25 @@ public class GoombaMob extends CustomEntity
 
     public void applyVelocity(Vector vel)
     {
+        double magnifier = 0.75;
+
+        double dx = vel.getX() - base.getLocation().getX();
+        double dy = vel.getY() - base.getLocation().getY();
+        double dz = vel.getZ() - base.getLocation().getZ();
+
+        double magnitude = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+        vel.setX((dx * magnifier)/magnitude);
+        vel.setY((dy * magnifier)/magnitude);
+        vel.setZ((dz * magnifier)/magnitude);
+
         base.setVelocity(base.getVelocity().add(vel));
+    }
+
+    public void damage(double dmg)
+    {
+        double currenthealth = base.getHealth();
+        base.setHealth(Math.max(currenthealth - dmg, 0));
     }
 
 }

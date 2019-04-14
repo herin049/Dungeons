@@ -22,36 +22,35 @@ public class AttackHandler implements Listener
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = false)
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event)
     {
+
         if(event.getEntity() instanceof Slime && event.getEntity().isSilent() && !((Slime) event.getEntity()).hasAI())
         {
             for(int i = 0; i < dungeons.entities.size(); i++)
             {
                 if(dungeons.entities.get(i).hasSlime((Slime)event.getEntity()))
                 {
-                    System.out.println(event.getEntity().isInvulnerable());
                     event.setCancelled(true);
 
-                    double dx = event.getEntity().getLocation().getX() - event.getDamager().getLocation().getX();
-                    double dy = event.getEntity().getLocation().getY() - event.getDamager().getLocation().getY();
-                    double dz = event.getEntity().getLocation().getZ() - event.getDamager().getLocation().getZ();
+                    dungeons.entities.get(i).applyVelocity(new Vector(event.getDamager().getLocation().getX(), event.getDamager().getLocation().getY(), event.getDamager().getLocation().getZ()));
+                    dungeons.entities.get(i).damage(event.getDamage());
 
-                    double mag = Math.sqrt(dx * dx + dy * dy + dz * dz);
-
-                    dungeons.entities.get(i).applyVelocity(new Vector(dx/mag, dy/mag, dz/mag));
+                    return;
                 }
             }
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = false)
     public void onEntityDamage(EntityDamageEvent event)
     {
+
         if(event.getEntity() instanceof Slime && event.getEntity().isSilent() && !((Slime) event.getEntity()).hasAI())
         {
             for(int i = 0; i < dungeons.entities.size(); i++)
             {
                 if(dungeons.entities.get(i).hasSlime((Slime)event.getEntity()))
                 {
+                    System.out.println(event.getCause());
                     event.setCancelled(true);
                 }
             }
