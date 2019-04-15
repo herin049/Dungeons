@@ -45,15 +45,26 @@ public class TestMob extends CustomEntity
 
         head = SkullCreator.itemFromBase64("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYWVjZjk0ZjRiY2JiZjZlYWRjYjI1YWEzZDA2OWFhNjc4ZWJkYjUyNDFlYjgyZThlMjY4ODljYWYzMjc1NTcwIn19fQ==");
 
-        parts.add(new EntityPart(new Vector(0,0,0), loc, slime_head));
-        parts.add(new EntityPart(new Vector(0,0.5,0), loc, slime_head));
-        parts.add(new EntityPart(new Vector(0,1.2,0), loc, alien_head));
-        parts.add(new EntityPart(new Vector(0.5,0,0), loc, slime_head));
-        parts.add(new EntityPart(new Vector(0.5,0.5,0), loc, slime_head));
-        parts.add(new EntityPart(new Vector(-0.5,0,0), loc, slime_head));
-        parts.add(new EntityPart(new Vector(-0.5,0.5,0), loc, slime_head));
+        /*
+        parts.add(new EntityPart(new Vector(0,0,0), loc, slime_head, false));
+        parts.add(new EntityPart(new Vector(0,0.5,0), loc, slime_head, false));
+        parts.add(new EntityPart(new Vector(0,0.85,0), loc, alien_head, true));
+        parts.add(new EntityPart(new Vector(0.5,0,0), loc, slime_head, false));
+        parts.add(new EntityPart(new Vector(0.5,0.5,0), loc, slime_head, false));
+        parts.add(new EntityPart(new Vector(-0.5,0,0), loc, slime_head, false));
+        parts.add(new EntityPart(new Vector(-0.5,0.5,0), loc, slime_head, false));
+        */
+
+        parts.add(new EntityPart(new Vector(0,0,0), loc, slime_head, false));
+        parts.add(new EntityPart(new Vector(0,0.4375,0), loc, slime_head, false));
+        parts.add(new EntityPart(new Vector(0,0.875,0), loc, alien_head, true));
+        parts.add(new EntityPart(new Vector(0.34375,0.23438,0.28125), loc, slime_head, true));
+        parts.add(new EntityPart(new Vector(-0.34375,0.23438,0.28125), loc, slime_head, true));
+        parts.add(new EntityPart(new Vector(0.34375,0.51563,0), loc, slime_head, true));
+        parts.add(new EntityPart(new Vector(-0.34375,0.51563,0), loc, slime_head, true));
 
         base = (ZombieVillager) loc.getWorld().spawn(loc, ZombieVillager.class);
+        base.setCollidable(false);
         base.setCanPickupItems(false);
         base.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1));
         base.setBaby(true);

@@ -10,28 +10,33 @@ import org.bukkit.util.Vector;
 
 public class EntityPart
 {
+    private boolean small;
     private Slime bounding;
     private ArmorStand part;
     private ItemStack part_item;
     private Vector position;
 
-    public EntityPart(Vector pos, Location loc, ItemStack item)
+    public EntityPart(Vector pos, Location loc, ItemStack item, boolean isSmall)
     {
         part = (ArmorStand) loc.getWorld().spawn(loc, ArmorStand.class);
+        part.setSmall(isSmall);
+        part.setCollidable(false);
         part.setGravity(false);
         part.setVisible(false);
         part.setHelmet(item);
         part.setInvulnerable(true);
-        part.setCollidable(false);
+
 
         bounding = (Slime) loc.getWorld().spawn(loc, Slime.class);
+        bounding.setCollidable(false);
         bounding.setSize(2);
         bounding.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1));
         bounding.setAI(false);
         bounding.setSilent(true);
-        bounding.setCollidable(false);
+
 
         position = pos;
+        small = isSmall;
     }
 
     public Slime getSlime()
@@ -61,7 +66,12 @@ public class EntityPart
 
         bounding.teleport(current_bounding);
 
-        current_bounding.setY(y - 1.4);
+        if(small) {
+            current_bounding.setY(y - 0.525);
+        }else
+        {
+            current_bounding.setY(y - 1.4);
+        }
 
         part.teleport(current_bounding);
     }

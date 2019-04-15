@@ -1,6 +1,7 @@
 package com.pluginsx.dungeons.commands;
 
 import com.pluginsx.dungeons.Dungeons;
+import com.pluginsx.dungeons.entity.mobs.TestMob;
 import net.minecraft.server.v1_13_R2.Entity;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
@@ -20,7 +21,7 @@ public class CommandTest extends Command
     {
         Player p = (Player) sender;
 
-        //instance.entities.add(new TestMob(p.getLocation()));
+        instance.entities.add(new TestMob(p.getLocation()));
         //instance.entities.add(new GoombaMob(p.getLocation()));
         //Location loc = p.getLocation();
 
