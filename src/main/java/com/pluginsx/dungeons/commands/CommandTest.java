@@ -2,12 +2,14 @@ package com.pluginsx.dungeons.commands;
 
 import com.pluginsx.dungeons.Dungeons;
 import com.pluginsx.dungeons.entity.mobs.TestMob;
+import com.pluginsx.dungeons.entity.nmsmobs.BoundingBox;
 import net.minecraft.server.v1_13_R2.Entity;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_13_R2.CraftWorld;
 
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Slime;
 
 public class CommandTest extends Command
 {
@@ -21,7 +23,8 @@ public class CommandTest extends Command
     {
         Player p = (Player) sender;
 
-        instance.entities.add(new TestMob(p.getLocation()));
+        Slime boundingbox = BoundingBox.spawn(p.getLocation(), null, 1);
+        //instance.entities.add(new TestMob(p.getLocation()));
         //instance.entities.add(new GoombaMob(p.getLocation()));
         //Location loc = p.getLocation();
 

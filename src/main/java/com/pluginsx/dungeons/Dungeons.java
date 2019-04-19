@@ -2,8 +2,10 @@ package com.pluginsx.dungeons;
 
 import com.pluginsx.dungeons.commands.CommandManager;
 import com.pluginsx.dungeons.entity.CustomEntity;
+import com.pluginsx.dungeons.entity.nmsmobs.BoundingBox;
 import com.pluginsx.dungeons.handlers.AttackHandler;
 import com.pluginsx.dungeons.util.MobRegistry;
+import net.minecraft.server.v1_13_R2.EntitySlime;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -17,6 +19,8 @@ public final class Dungeons extends JavaPlugin
     @Override
     public void onEnable()
     {
+
+        new MobRegistry().registerEntity("BoundingBox", 55, EntitySlime.class, BoundingBox.class);
 
         PluginManager pluginmanager = getServer().getPluginManager();
 

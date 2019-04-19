@@ -1,39 +1,39 @@
 package com.pluginsx.dungeons.util;
 
-import com.mojang.datafixers.types.Type;
 import net.minecraft.server.v1_13_R2.*;
-import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_13_R2.CraftWorld;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.logging.Logger;
 
-public class MobRegistry
-{
-    private static Field entityClass;
-    private static Field entityFunction;
-    private static Method biomebase_addSpawn;
 
-    static {
+public class MobRegistry {
+
+    public void registerEntity(String name, int id, Class<? extends EntityInsentient> nmsClass, Class<? extends EntityInsentient> customClass) {
         try {
-            entityClass = EntityTypes.class.getDeclaredField("aS");
-            entityClass.setAccessible(true);
-            entityFunction = EntityTypes.class.getDeclaredField("aT");
-            entityFunction.setAccessible(true);
-            biomebase_addSpawn = BiomeBase.class.getDeclaredMethod("a", EnumCreatureType.class, BiomeBase.BiomeMeta.class);
-            biomebase_addSpawn.setAccessible(true);
-        } catch (NoSuchFieldException | NoSuchMethodException ignore) {
-        }
-    }
 
-    public static void injectNewEntityTypes(String name, String extend_from, Class<? extends Entity> clazz, Function<? super World, ? extends Entity> function) {
-        Map<Object, Type<?>> dataTypes = (Map<Object, Type<?>>) DataConverterRegistry.a().getSchema(15190).findChoiceType(DataConverterTypes.n).types();
-        dataTypes.put("minecraft:" + name, dataTypes.get("minecraft:" + extend_from));
-        EntityTypes.a(name, EntityTypes.a.a(clazz, function));
-        System.out.println("Successfully injected new entity: &a" + name);
+            List<Map<?, ?>> dataMaps = new ArrayList<Map<?, ?>>();
+            for (Field f : EntityTypes.class.getDeclaredFields()) {
+                if (f.getType().getSimpleName().equals(Map.class.getSimpleName())) {
+                    f.setAccessible(true);
+                    dataMaps.add((Map<?, ?>) f.get(null));
+                }
+            }
+
+            if (dataMaps.get(2).containsKey(id)) {
+                dataMaps.get(0).remove(name);
+                dataMaps.get(2).remove(id);
+            }
+
+            Method method = EntityTypes.class.getDeclaredMethod("a", Class.class, String.class, int.class);
+            method.setAccessible(true);
+            method.invoke(null, customClass, name, id);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
